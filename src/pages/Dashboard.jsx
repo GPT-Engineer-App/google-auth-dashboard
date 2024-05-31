@@ -15,11 +15,24 @@ const Dashboard = () => {
     const fetchUser = async () => {
       const {
         data: { session },
+        error,
       } = await supabase.auth.getSession();
       if (session) {
         setUser(session.user);
-      } else {
+      } else if (error) {
+        console.error("Error fetching session:", error);
         navigate("/");
+      } else {
+        const {
+          data: { session: refreshedSession },
+          error: refreshError,
+        } = await supabase.auth.refreshSession();
+        if (refreshedSession) {
+          setUser(refreshedSession.user);
+        } else {
+          console.error("Error refreshing session:", refreshError);
+          navigate("/");
+        }
       }
     };
 

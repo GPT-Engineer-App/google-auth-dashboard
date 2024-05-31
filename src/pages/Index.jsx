@@ -33,14 +33,19 @@ const Index = () => {
 
     const url = new URL(window.location.href);
     const accessToken = url.hash.match(/access_token=([^&]*)/);
-    if (accessToken) {
+    const refreshToken = url.hash.match(/refresh_token=([^&]*)/);
+    if (accessToken && refreshToken) {
       supabase.auth
         .setSession({
           access_token: accessToken[1],
-          refresh_token: url.hash.match(/refresh_token=([^&]*)/)[1],
+          refresh_token: refreshToken[1],
         })
-        .then(() => {
-          navigate("/dashboard");
+        .then(({ error }) => {
+          if (!error) {
+            navigate("/dashboard");
+          } else {
+            console.error("Error setting session:", error);
+          }
         });
     }
 
