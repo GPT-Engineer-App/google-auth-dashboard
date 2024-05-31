@@ -5,7 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = "https://bwfvmnyldwrhcvxdrfdt.supabase.co";
-const supabaseKey = "YOUR_SUPABASE_ANON_KEY"; // Replace with your Supabase anon key
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3ZnZtbnlsZHdyaGN2eGRyZmR0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTcxMjIwMzIsImV4cCI6MjAzMjY5ODAzMn0.p-g_isByyrQ8-M6xIuNT6Mzswgs1VmrFq2wjmQ_4Quc";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const Index = () => {
