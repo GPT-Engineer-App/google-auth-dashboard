@@ -31,6 +31,19 @@ const Index = () => {
       }
     });
 
+    const url = new URL(window.location.href);
+    const accessToken = url.hash.match(/access_token=([^&]*)/);
+    if (accessToken) {
+      supabase.auth
+        .setSession({
+          access_token: accessToken[1],
+          refresh_token: url.hash.match(/refresh_token=([^&]*)/)[1],
+        })
+        .then(() => {
+          navigate("/dashboard");
+        });
+    }
+
     return () => subscription.unsubscribe();
   }, [navigate]);
 
