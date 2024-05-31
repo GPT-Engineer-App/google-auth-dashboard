@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Heading, Center, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Center, Text, Flex, VStack, HStack, Image } from "@chakra-ui/react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = "https://bwfvmnyldwrhcvxdrfdt.supabase.co";
